@@ -1,118 +1,176 @@
 package Punto1;
-
 import java.util.ArrayList;
 
-public class Agenda 	
+public class Agenda 
 {
-	private ArrayList<Persona> personasList;
+	//Atributo de la agenda que es una ArrayList tipo persona.
+	private ArrayList<Persona> listaDePersonas;
 	
-	//Constructor objeto agenda. Contiene un ArrayList que almacena objetos de la clase Persona.
+	//Constructor
 	public Agenda() 
 	{
-		this.personasList = new ArrayList<Persona>();
+		this.listaDePersonas = new ArrayList<Persona>();
 	}
 	
-	//Metodo que busca a la persona. 																				(select)
-	private Persona buscarPersona(int dni) 
+	//Mismo metodo que buscarPersona pero público para poder usarlo en el metodo main de Test.java .
+	public Persona getPersona(int dni) 
 	{
-		int i = 0; //Índice.
-		int sizeListArray = this.personasList.size(); //Obtenemos el size de la lista (la cantidad natural de elementos que posee)
-		Persona personaEncontrada = null; //Variable que almacenará a la persona buscada.
+		Persona personaEncontrada = null;
 		
-		while(i < sizeListArray && personaEncontrada == null) //Mientras aún haya elementos en la lista y no hayamos encontrado a la persona la seguimos buscando..
+		for(Persona personaIterada:this.listaDePersonas) 
 		{
-			Persona personaIterada = this.personasList.get(i); //Obtenemos el primer elemento de la lista [0], lo almacenamos. En la siguiente iteración (si la hay) se obtendrá el elemento de la posición [1]
+			if(personaIterada.getDNI() == dni) 
+			{
+				personaEncontrada = personaIterada;
+				return personaEncontrada;
+			}
+		}
+		
+		return null;
+	}
+	
+	//Metodo privado que devuelve un objeto Persona o null según si se encontró la persona mediante el while que iterará la lista y en cada iteración obtendrá una persona diferente de la lista
+	private Persona buscarPersona(int dni)												//SELECT 
+	{									
+		//Iteramos por la lista de personas con un bucle foreach.
+		for(Persona personaIterada: this.listaDePersonas) 
+		{
+			Persona personaEncontrada = null; // Incializamos con este valor para utilizarlo en la condición del bucle while, además será su valor final 
 			
-			if(personaIterada.obtenerDNI() == dni) //Si la persona getteada coincide con el DNI argumentado en el metodo la encontramos.
-			{
-				personaEncontrada = personaIterada; //Asignamos a la persona encontrada en la iteración en la variable correspondiente.
-			}
-			else //Si no coincide con el DNI 
-			{
-				i++; //Aumentamos el valor del índice para en la siguiente iteración obtener el siguiente elemento de la lista, ahora en la posición [1]
+			if(personaIterada.getDNI() == dni) //Evalúamos si la persona iterada coincide en DNI con el recibido. (Lógica para encontrar la persona)
+			{ 
+				personaEncontrada = personaIterada;
+				return personaEncontrada;
 			}
 		}
-		//Una vez salido del while significa que encontramos a la persona o que iteramos todo el ListArray sin encontrarla.
-		return personaEncontrada; //Devuelve a la persona encontrada o null, según si se encontró una persona con el DNI argumentado.
+		
+		//Salidos del bucle foreach significa que se iteró toda la ArrayList y no se encontró a la persona, por lo tanto devolvemos null.
+		return null;
 	}
 	
-	//Metodo publico que devuelve un valor bool. 														(insert)
-	public boolean agregarPersona(String nombre, String apellido, int dni) 
+	
+	//Metodo que devuelve un valor bool que indicará si se agregó la persona o no por ya estar registrado su DNI parametrizado.
+	public boolean agregarPersona(String nombre, String apellido, int DNI) 						//INSERT
 	{
-		Persona personaEncontrada = buscarPersona(dni); //Buscamos si existe la persona con el dni argumentado.
+		Persona personaEncontrada = buscarPersona(DNI); //Validamos si existe una persona con los datos recibidos 
 		
-		if(personaEncontrada == null) //Si no existe, la creamos con los 3 argumentos recibidos.
+		boolean resultado = false;
+		
+		if(personaEncontrada == null) //Si no encontramos la persona, el DNI está disponibles y procedemos a crearla.
 		{
-			Persona agustin = new Persona("Agustin", "Dahbar", 43030679); 
-			this.personasList.add(agustin); //Agregamos la persona a la ArrayList mediante su argumentación en el metodo add().
-			return true; //Devolvemos true ya que se cumplió el nombre del metodo.
+			Persona persona = new Persona(nombre, apellido, DNI); //Usamos los 3 parametros para instanciar su clase, por lo tanto crear el objeto.
+			this.listaDePersonas.add(persona); //Lo añadimos a la lista de la clase Agenda.
+			System.out.println("Se creó la persona correctamente");
+			resultado = true;
+		}
+		else //Si encontramos a una persona con ese DNI..
+		{
+			System.out.println("Este DNI ya está registrado.");
 		}
 		
-		return false; //Devolvemos false ya que no se cumplió el nombre del metodo por ya existir la persona.
+		return resultado;
 	}
 	
-	
-	//Buscamos una persona para eliminarla. Si no existe, devolvemos null. 									(delete)
-	public Persona removerPersona(int dni) 
+	//Metodo que devuelve un objeto tipo persona o null. 
+	public Persona removerPersona(int DNI) 													//DELETE
 	{
-		Persona personaEliminada = null;
+		 Persona personaEliminada = null;
+		 Persona personaBuscada= buscarPersona(DNI);
+		 
+		 if(personaBuscada == null) 
+		 {
+			 System.out.println("No existe persona con tal DNI.");
+			 return null;
+		 }
+		 else 
+		 {
+			 personaEliminada = personaBuscada;
+			 this.listaDePersonas.remove(personaBuscada);
+			 System.out.println("Se ha eliminado la persona.");
+			 return personaEliminada;
+		 }	 
+	}
+	
+	//Metodo que devuelve un valor booleano según si se realizó el objetivo del metodo.
+	public boolean modificarDomicilio(int DNI, Domicilio domicilio) 
+	{																																//UPDATE
+		Persona personaEncontrada = buscarPersona(DNI); //Buscamos la persona a la que le queremos cambiar el domicilio.
 		
-		Persona personaEncontrada = buscarPersona(dni); //Buscamos la persona a eliminar.
-		
-		if(personaEncontrada != null) //Si la encontramos
-		{
-			personaEliminada = personaEncontrada; //Antes de eliminarla, guardamos sus datos en una variable que funcionará de "papelera de reciclaje".
-			this.personasList.remove(personaEncontrada); // Eliminamos a la persona encontrada.
+		if(personaEncontrada != null)//Si la encontramos 
+		{ 
+			personaEncontrada.setDomicilio(domicilio); //Le setteamos el domicilio con el metodo correspondiente.
+			System.out.println("Cambio de domicilio exitoso");
+			return true;
 		}
 		
-		return personaEliminada; //Retornamos a la persona eliminada o null, según se haya encontrado o no.
+		System.out.println("No se encontró a esa persona");
+		return false;
+	}
+
+	//listarPersonas();
+	public void listarPersonas() 
+	{
+		for(Persona personaIterada: this.listaDePersonas) 
+		{
+			System.out.println(personaIterada);
+		}
+	}
+
+	
+	//Metodo que imprime todas las personas de la ListArray. Una por cada iteración via bucle while.
+	public void listarPersonasWhile() 											//SELECT
+	{
+		int i = 0; //Indice usado en la condición del while, y para obtener a las personas del ArrayList.
+		int sizeList = listaDePersonas.size(); //Obtenemos la cantidad de elemenetos que posee la lista.
+		Persona personaIterada = null; //Variable que almacenará en diferentes iteraciones a todas las personas de la lista para imprimirlas.
+		
+		while(i < sizeList) //Se ejecutará hasta que i tenga el valor anterior a sizeList
+		{
+			personaIterada = listaDePersonas.get(i); //Obtenemos una persona de la lista.
+			System.out.println(personaIterada);
+			i++;
+		}
 	}
 	
-	//Modificamos el domicilio 																			(update)
-	public boolean modificarDomicilio(int dni, Domicilio domicilio) 
+	//Método público devolverUltimo() que no recibe parámetros y devuelve el
+	//último elemento de la lista (si es que ésta contiene elementos).
+	
+	public Persona devolverUltimo() 									//SELECT
 	{
-		Persona persona = this.buscarPersona(dni); //Buscamos a la persona con el metodo correspondiente.
+		int sizeList = this.listaDePersonas.size(); //Obtenemos la cantidad de elementos de la lista.
+		Persona ultimaPersona = null; //Variable que almacenará a la última persona del ListArray.
 		
-		if(persona != null) //Si encontramos a la persona..
+		if(sizeList != 0) //Si la lista tiene elementos.
 		{
-			persona.setDomicilio(domicilio); //Setteamos su domicilio.
-			return true; //Devolvemos true ya que se llevo a cabo la acción que pretendía el metodo.
+			ultimaPersona = this.listaDePersonas.get(sizeList - 1); //Encontramos a la última persona mediante indexación en 0, por eso le debemos restar uno al size del list, ya que ese valor si es indexado natural (1-10)
+			System.out.println("Ultima persona registrada: " + ultimaPersona);
+			return ultimaPersona;
+			
+		}
+		else 
+		{
+			System.out.println("La lista no posee personas registradas.");
 		}
 		
-		System.out.println("El DNI ingresado no corresponde a ningúna persona registrada.");
-		return false; 
+		//Ya que usamos dos returns el else es innecesario, debido a que si se ejecuta el anterior, se corta el metodo.
+		return null;
 	}
 	
-	//Devolvemos a la ultima persona de la lista. 															(select)
-	public Persona devolverUltimo() 
+	//Metodo que elimina todos los elementos de la lista de a uno mediante un bucle while 				DELETE
+	public void eliminarTodosElementosAmano() 
 	{
-		Persona ultimaPersona = null; //Variable que almacenará a la última persona.
-	
-		int sizeListArray = this.personasList.size(); //Obtenemos la posición indexada NATURALMENTE (comenzando en 1)
-	
-		if(sizeListArray != 0) //Si el ListArray tiene contenido, obtenemos a la ultima persona con el metodo get() y cierta lógica. 
+		while(!(this.listaDePersonas.isEmpty())) //Mientras el listArray no este vació..
 		{
-			ultimaPersona = this.personasList.get(sizeListArray - 1);
-			//Para obtener la última persona le restamos a la indexación natural una unidad. Ya que la indexación de acceso a 
-			//ListArrays comienza en 0.	
-		}
-	
-		return null; //Si el ListArray tiene 0 elementos devolvemos null.
-	}
-	
-	//Con un while eliminamos todos los elementos de la lista. (Uno por uno) Sin el clear(). 					(delete)
-	public void eliminarTodosLosElementosAMano() 
-	{
-		//While que comprueba si la lista no esta vacia. Si no lo está da true y se realiza el remove del primer elemento en el índice 0, y así hasta que sea null. Una vez sea null, la condición dará false y no se ejecutará más.
-		while(!this.personasList.isEmpty()) //Mientras la lista tenga contenido... (Diferente a Empty)
-		{
-			this.personasList.remove(0); //Se eliminará el primer elemento del ArrayList de personas. (Ya que no sabemos si existen dos o es el único. Solo sabemos que al menos hay un elemento.
+			this.listaDePersonas.remove(0);//Removemos su primer elemento
 		}
 		
-		System.out.println("Se vació el ListArray de personas."); //personasList.isEmpty() == TRUE;
+		System.out.println("Se han eliminado todos los elementos de la lista, uno por uno.");
 	}
 	
-	//Otra condición podría ser while(this.personasList.size > 0). Si el listArray tiene más de 0 elementos.
-	
+	//ToString
+	@Override
+	public String toString() {
+		return "Agenda [Lista = " + this.listaDePersonas + "]";
+	}
 	
 }
