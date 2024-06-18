@@ -91,20 +91,42 @@ public class Inmobiliaria
 			int cantPropiedades = barrioIterado.getListaPropiedades().size(); //condición del while para iterar por las propiedades del barrio
 			
 			int j = 0;
+
+			Propiedad propiedadEncontrada = null;
 			
-			while(j < cantPropiedades) //Iteramos por la cantidad de propiedades del barrio actual.
+			while(j < cantPropiedades && propiedadEncontrada == null) //Iteramos por la cantidad de propiedades del barrio actual.
 			{
 				Propiedad propiedadIterada = barrioIterado.getListaPropiedades().get(j); //Obtenemos una propiedad de la lista
 				
 				if(propiedadIterada.getDomicilio().equals(domicilio)) //Evaluamos si es la misma que recibimos por parametro mediante su atributo.
 				{
+					propiedadEncontrada = propiedadIterada; //Asignamos esta variable para que se salga del bucle while.
 					barrioIterado.getListaPropiedades().remove(propiedadIterada); //Si lo es la encontramos y la borramos.
 					System.out.println("Propiedad borrada exitosamente.");
 				}
+				
+				j++;
 			}
 		}
 		
 		System.out.println("No se ha encontrado la propiedad indicada.");
 	}
 
+	
+	
+	//Metodo para agregarle barrios a la inmobiliaria.
+	public void agregarBarrios(Barrio barrio) 
+	{
+		this.listaBarrios.add(barrio);
+	}
+	
+	//Mostramos todos los barrios de la lista.
+	public void mostrarBarrios() 
+	{
+		for(Barrio barrioIterado : this.listaBarrios) 
+		{
+			System.out.println(barrioIterado);
+		}
+	}
+	
 }

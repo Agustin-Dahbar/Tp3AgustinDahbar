@@ -32,7 +32,7 @@ public class Propiedad
 	@Override
 	public String toString() 
 	{
-		return "Propiedad =" + this.tipo + this.domicilio  + " cuesta" + this.precio + "$";
+		return "Propiedad =" + this.domicilio  + " cuesta " + this.precio + "$" + " es " + this.tipo;
 	}
 	
 }

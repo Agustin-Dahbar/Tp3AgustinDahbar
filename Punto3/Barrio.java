@@ -6,8 +6,9 @@ public class Barrio
 	private String nombre;
 	private ArrayList<Propiedad> listaPropiedadesEnVenta;
 	
-	public Barrio() 
+	public Barrio(String nombre) 
 	{
+		this.nombre = nombre;
 		listaPropiedadesEnVenta= new ArrayList<>();
 	}
 	
@@ -43,5 +44,15 @@ public class Barrio
 	public ArrayList<Propiedad> getListaPropiedades()
 	{
 		return this.listaPropiedadesEnVenta;
+	}
+	
+	public void añadirPropiedad(Propiedad propiedad) 
+	{
+		this.listaPropiedadesEnVenta.add(propiedad);
+	}
+	
+	@Override
+	public String toString() {
+		return "Barrio [nombre=" + nombre + ", listaPropiedadesEnVenta=" + listaPropiedadesEnVenta + "]";
 	}
 }
