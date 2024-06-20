@@ -15,7 +15,6 @@ public class Persona
 		this.DNI = DNI;
 	}
 	
-
 	//Getters
 	public int getDNI() {
 		return this.DNI;
