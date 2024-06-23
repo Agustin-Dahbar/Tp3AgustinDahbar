@@ -9,7 +9,7 @@ public class Barrio
 	public Barrio(String nombre) 
 	{
 		this.nombre = nombre;
-		listaPropiedadesEnVenta= new ArrayList<>();
+		this.listaPropiedadesEnVenta= new ArrayList<>();
 	}
 	
 	//Mostramos propiedades de un TIPO ESPECÍFICO

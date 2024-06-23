@@ -12,7 +12,6 @@ public class Domicilio
 		this.numero = numero;
 		this.ciudad = ciudad;
 	}
-	
 
 	public String getCalle() 
 	{

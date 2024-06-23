@@ -8,14 +8,14 @@ public class Persona
 	private Domicilio domicilio;
 	
 	//Constructores (defecto, parametrizado)
-	public Persona(String nombre, String apellido,int DNI) 
+	public Persona(String nombre, String apellido, int DNI) 
 	{
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.DNI = DNI;
 	}
 	
-	//Getters
+	//Get y set.
 	public int getDNI() {
 		return this.DNI;
 	}

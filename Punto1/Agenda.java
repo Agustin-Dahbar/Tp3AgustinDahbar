@@ -9,7 +9,7 @@ public class Agenda
 	//Constructor
 	public Agenda() 
 	{
-		this.listaDePersonas = new ArrayList<Persona>();
+		this.listaDePersonas = new ArrayList<>();
 	}
 	
 	

@@ -8,7 +8,7 @@ public class Inmobiliaria
 	
 	public Inmobiliaria() 
 	{
-		listaBarrios = new ArrayList<Barrio>();
+		this.listaBarrios = new ArrayList<Barrio>();
 	}
 	
 	//Mostramos las propiedades de la inmobiliaria, para eso primero y cada uno de ellos mostrara la lista de sus propiedades.

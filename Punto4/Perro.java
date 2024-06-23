@@ -20,7 +20,7 @@ public class Perro
              if (!pichichusCreado) 
              {
                  this.nombre = PERROS.PICHICHUS;
-                 pichichusCreado = true;
+                 this.pichichusCreado = true;
              } 
              else 
              {
@@ -31,7 +31,7 @@ public class Perro
              if (!sultanCreado) 
              {
                  this.nombre = PERROS.SULTAN;
-                 sultanCreado = true;
+                 this.sultanCreado = true;
              } 
              else 
              {
@@ -39,7 +39,7 @@ public class Perro
              }
              break;
          default:
-             System.out.println("Tipo de perro no válido.");
+             System.out.println("Nombre de perro inválido.");
              break;
      }
 		
@@ -53,7 +53,7 @@ public class Perro
 		System.out.println("Woohoo!");
 		dueño.prepararPaseo(this.nombre, this.collar);
 	}
-	
+
 	//Mueve la cola si lleva el collar
 	public void moverCola() 
 	{
@@ -66,7 +66,10 @@ public class Perro
 	//Setters del atributo collar para ponerselo y sacarselo.
 	public void ponerCollar(Collar collar) 
 	{
-		this.collar = collar;
+		if(collar.getNombre().equals(this.nombre)) //Validamos si el nombre del collar es el del perro al que se le quiere poner.
+		{
+			this.collar = collar;
+		}
 	}
 	
 	public void sacarCollar() 
@@ -79,5 +82,6 @@ public class Perro
 	{
 		return this.nombre;
 	}
+
 	
 }

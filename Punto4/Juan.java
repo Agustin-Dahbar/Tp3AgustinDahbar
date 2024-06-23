@@ -10,7 +10,7 @@ public class Juan
 	{
 		this.listaPerros = new ArrayList<>();
 		this.perchero = new Perchero();
-	}
+	}  
 	
 	//Buscamos al perro en la lista por su nombre.
 	public Perro buscarPerro(PERROS nombrePerro) 
@@ -36,7 +36,7 @@ public class Juan
 	//Tomamos el collar del perchero y se lo ponemos al perro. (Heredamos metodos de Perchero y Perro)
 	public void tomarCollarYponerAlPerro(Collar collar, Perro perro) 
 	{	
-		if(perchero.descolgarCollar(collar)) //Comprobamos que el collar recibido este en el perchero, si lo está ..
+		if(perchero.descolgarCollar(collar)) //Comprobamos que el collar recibido esté en el perchero, si lo está ..
 		{
 			perro.ponerCollar(collar); //Se lo ponemos al perro.
 		}
@@ -98,7 +98,7 @@ public class Juan
 	    
 	    if (!perroEncontrado) //Si no encontramos al perro, lo agregaremos (perroEncontrado == false)
 	    {
-	        listaPerros.add(perroNuevo); // Añadir el perro a la lista si no está presente
+	        this.listaPerros.add(perroNuevo); // Añadir el perro a la lista si no está presente
 	        System.out.println("Se ha añadido al perro " + perroNuevo.getNombre() + " a la lista.");
 	    } 
 	    else //Si lo encontramos
@@ -109,12 +109,19 @@ public class Juan
 	}
 	
 	//Añadimos collar al perchero
-	public void añadirCollar(Collar collar) 
+	public void añadirCollar(Collar collarNuevo) 
 	{
-		if(!(collar.estaColgado())) //Si el collar no está colgado..  Ya que ! implica inversa, es decir collar.estaColgado() == false
+		if(!(collarNuevo.estaColgado())) //Si el collar no está colgado..  Ya que ! implica inversa, es decir collar.estaColgado() == false
 		{
-			perchero.colgarCollar(collar); //Lo colgamos del perchero
+			perchero.colgarCollar(collarNuevo); //Lo colgamos del perchero
 		}
 	}
 	
+	
+	//ToString()
+	@Override
+	public String toString() 
+	{
+		return "Juan [listaPerros=" + this.listaPerros + ", perchero=" + this.perchero + "]";
+	}
 }

@@ -1,0 +1,6 @@
+package Punto6;
+
+public enum ESTADO_CLIENTE 
+{
+	CLIENTE_EXISTENTE, CLIENTE_DEUDOR, ALTA_OK
+}

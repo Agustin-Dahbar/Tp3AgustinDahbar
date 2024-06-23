@@ -79,5 +79,11 @@ public class Perchero
 		return collarEncontrado;
 		
 	}
+
+	@Override
+	public String toString() 
+	{
+		return "Perchero [collaresColgados=" + collaresColgados + "]";
+	}
 	
 }
