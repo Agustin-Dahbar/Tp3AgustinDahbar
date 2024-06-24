@@ -4,15 +4,15 @@ public class Test
 {
 	public static void main(String[] args) 
 	{
-		MusicApp app = new MusicApp();
+		Aplicacion app = new Aplicacion();
 		
-		Cancion cancionUno = new Cancion("CancionUno", "Freddy", GENEROS.ROCK);
-		Cancion cancionDos = new Cancion("CancionDos", "Freddy", GENEROS.ROCK);
-		Cancion cancionTres = new Cancion("CancionUno", "Freddy", GENEROS.POP);
+		Cancion cancionUno = new Cancion("CancionUno", "Freddy", GENERO.ROCK);
+		Cancion cancionDos = new Cancion("CancionDos", "Freddy", GENERO.ROCK);
+		Cancion cancionTres = new Cancion("CancionUno", "Freddy", GENERO.POP);
 		
-		app.agregarCancion(cancionUno);
-		app.agregarCancion(cancionDos);
-		app.agregarCancion(cancionTres);
+		app.altaCancion("CancionUno", "Freddy");
+		app.altaCancion("CancionDos", "Freddy");
+		app.altaCancion("CancionUno", "Freddy");
 		
 		//El combo entre agregarCancion() y buscarCancion() funciona correctamente.
 	}

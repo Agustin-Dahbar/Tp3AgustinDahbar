@@ -1,6 +1,6 @@
 package Punto7;
 
-public enum GENEROS 
+public enum GENERO 
 {
 	ROCK, POP, CLASICA, TRAP, CUMBIA, ETC
 }

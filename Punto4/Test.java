@@ -8,11 +8,11 @@ public class Test
 		
 		Perchero perchero = new Perchero(); //Creamos un perchero, inicializa la lista de collares colgados vacía.
 		
-		Collar collarPichi = new Collar(PERROS.PICHICHUS); //Creamos un collar con el nombre de Pichichus
-		Collar collarSultan = new Collar(PERROS.SULTAN); //Creamos un collar con el nombre de Sultan.
+		Collar collarPichi = new Collar(NOMBRE_PERRO.PICHICHUS); //Creamos un collar con el nombre de Pichichus
+		Collar collarSultan = new Collar(NOMBRE_PERRO.SULTAN); //Creamos un collar con el nombre de Sultan.
 		
-		Perro pichi = new Perro(PERROS.PICHICHUS, juan); //Creamos a los dos perros de juan asignandoles nombre y su dueño (el)
-		Perro sultan = new Perro(PERROS.SULTAN, juan);
+		Perro pichi = new Perro(NOMBRE_PERRO.PICHICHUS, juan); //Creamos a los dos perros de juan asignandoles nombre y su dueño (el)
+		Perro sultan = new Perro(NOMBRE_PERRO.SULTAN, juan);
 		
 		juan.añadirPerro(pichi);
 		juan.añadirPerro(sultan);

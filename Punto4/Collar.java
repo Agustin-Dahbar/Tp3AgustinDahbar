@@ -2,17 +2,17 @@ package Punto4;
 
 public class Collar 
 {
-	private PERROS nombre;
+	private NOMBRE_PERRO nombre;
 	private boolean estaColgado;
 	
-	public Collar(PERROS nombrePerro) 
+	public Collar(NOMBRE_PERRO nombreNOMBRE_PERRO) 
 	{
-		this.nombre = nombrePerro;
+		this.nombre = nombreNOMBRE_PERRO;
 		this.estaColgado = true;
 	}
 	
 	//Getters 
-	public PERROS getNombre() 
+	public NOMBRE_PERRO getNombre() 
 	{
 		return this.nombre;
 	}

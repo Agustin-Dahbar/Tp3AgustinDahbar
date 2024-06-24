@@ -1,6 +1,6 @@
 package Punto7;
 
-public enum CATEGORIAS 
+public enum CATEGORIA 
 {
 	GRATUITO, REGISTRADO, PREMIUM
 }

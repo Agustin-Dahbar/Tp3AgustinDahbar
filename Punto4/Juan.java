@@ -13,7 +13,7 @@ public class Juan
 	}  
 	
 	//Buscamos al perro en la lista por su nombre.
-	public Perro buscarPerro(PERROS nombrePerro) 
+	public Perro buscarPerro(NOMBRE_PERRO nombrePerro) 
 	{
 		int i = 0;
 		Perro perroEncontrado = null;
@@ -44,7 +44,7 @@ public class Juan
 	
 	
 	//Metodo que realiza un paseo. Desde tomar el collar y ponerselo al perro, salir a pasear, volver y colgar el
-	public void prepararPaseo(PERROS nombrePerro, Collar collar) 
+	public void prepararPaseo(NOMBRE_PERRO nombrePerro, Collar collar) 
 	{
 		Perro perro = buscarPerro(nombrePerro); //Buscamos al perro para validar su existencia
 		
@@ -125,3 +125,4 @@ public class Juan
 		return "Juan [listaPerros=" + this.listaPerros + ", perchero=" + this.perchero + "]";
 	}
 }
+

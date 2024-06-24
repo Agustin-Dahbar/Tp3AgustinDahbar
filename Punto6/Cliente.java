@@ -41,4 +41,9 @@ public class Cliente
 	{
 		this.historialDePeliculas.add(pelicula);
 	}
+	
+	public void aumentarDeuda(int deudaNueva) 
+	{
+		this.importeDeuda += deudaNueva;
+	}
 }

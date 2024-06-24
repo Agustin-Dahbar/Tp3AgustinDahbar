@@ -1,6 +1,6 @@
 package Punto4;
 
-public enum PERROS 
+public enum NOMBRE_PERRO 
 {
 	PICHICHUS, SULTAN;
 }

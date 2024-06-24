@@ -85,5 +85,4 @@ public class Perchero
 	{
 		return "Perchero [collaresColgados=" + collaresColgados + "]";
 	}
-	
 }

@@ -74,18 +74,18 @@ public class ORTFlix
 		
 		if(peliculaEncontrada == null) 
 		{
-			System.out.println("La película no existe.");
+			System.out.println("La pelicula no existe.");
 			resultado = RESULTADOS.CONTENIDO_INEXISTENTE;
 		}
 		else if(clienteEncontrado.getServicio() == SERVICIOS.PREMIUM) 
 		{
-			System.out.println("La pelicula está disponible.");
+			System.out.println("La pelicula esta disponible.");
 			clienteEncontrado.agregarPeliculaAlHistorial(peliculaEncontrada);
 			resultado = RESULTADOS.OK;
 		}
 		else if(clienteEncontrado.getServicio() == SERVICIOS.STANDAR && peliculaEncontrada.getServicio() == SERVICIOS.PREMIUM) 
 		{
-			System.out.println("La pelicula no es accesible para tu membresía.");
+			System.out.println("La pelicula no es accesible para tu membresia.");
 			resultado = RESULTADOS.CONTENIDO_NO_DISPONIBLE;
 		}
 		
@@ -165,9 +165,35 @@ public class ORTFlix
 		}
 	}
 	
+	//Setters y getters
 	public void agregarPelicula(Pelicula pelicula) 
 	{
 		this.listaPeliculas.add(pelicula);
+		System.out.println("Pelicula agregada");
 	}
+	
+	public void agregarCliente(Cliente cliente) 
+	{
+		this.listaClientes.add(cliente);
+		System.out.println("Cliente agregada");
+	}
+	
+	public void agregarClienteListaNegra(Cliente cliente) 
+	{
+		this.listaNegra.add(cliente);
+		System.out.println("Agregado a la lista negra");
+	}
+	
+	public ArrayList<Cliente> getClientes()
+	{
+		return this.listaClientes;
+	}
+	
+	public ArrayList<Cliente> getListaNegra()
+	{
+		return this.listaNegra;
+	}
+	
+	
 	
 }

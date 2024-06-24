@@ -4,12 +4,21 @@ public class Cancion
 {
 	private String nombre;
 	private String autor;
-	private GENEROS genero;
+	private GENERO genero;
 	private int diasPublicacion;
 	private int visitas;
 	
 	
-	public Cancion(String nombre, String autor, GENEROS genero) 
+	public Cancion(String nombre, String autor) 
+	{
+		this.nombre = nombre;
+		this.autor = autor;
+		this.genero = null;
+		this.diasPublicacion = 0;
+		this.visitas = 0;
+	}
+	
+	public Cancion(String nombre, String autor, GENERO genero) 
 	{
 		this.nombre = nombre;
 		this.autor = autor;

@@ -6,10 +6,11 @@ public class Usuario
 	private String email;
 	private String apellido;
 	private int edad;
-	private CATEGORIAS categoria;
+	private CATEGORIA categoria;
 	private ArrayList<Cancion> historialDelUsuario;
+	private int limiteDiario;
 	
-	public Usuario(String email, String apellido, int edad, CATEGORIAS categoria) 
+	public Usuario(String email, String apellido, int edad, CATEGORIA categoria) 
 	{
 		this.email = email;
 		this.apellido = apellido; 
@@ -17,12 +18,11 @@ public class Usuario
 		this.categoria = categoria;
 		this.historialDelUsuario = new ArrayList<>();
 	}
-	
 
 	//Comprobamos si el usuario puede seguir escuando musica según su membresía..
 	public void agregarCancionAlHistorial(Cancion cancion) 
 	{
-		if((this.categoria == CATEGORIAS.GRATUITO || this.categoria == CATEGORIAS.REGISTRADO)) //Si el usuario no es premium y la cancion es restringida
+		if((this.categoria == CATEGORIA.GRATUITO || this.categoria == CATEGORIA.REGISTRADO)) //Si el usuario no es premium y la cancion es restringida
 		{
 			if(cancion.esRestringida()) 
 			{
@@ -39,6 +39,18 @@ public class Usuario
 		}
 	}
 	
+	public boolean limiteAlcanzado() 
+	{
+		if(this.categoria == CATEGORIA.GRATUITO && limiteDiario >= 50) 
+		{
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
+	}
+	
 	public ArrayList<Cancion> getHistorial()
 	{
 		return this.historialDelUsuario;
@@ -47,5 +59,10 @@ public class Usuario
 	public String getEmail() 
 	{
 		return this.email;
+	}
+	
+	public CATEGORIA getCategoria() 
+	{
+		return this.categoria;
 	}
 }
